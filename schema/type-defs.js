@@ -17,7 +17,9 @@ const typeDefs = gql `
  type Query {
     # We want it to return the list of the user thats why we are using []
     users: [User!]!
-     }
+    user(id: ID!): User!  
+
+ }
 
 # The below is like that we have specified that only these many options should be there in the Data
 
