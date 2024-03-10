@@ -6,7 +6,7 @@ const typeDefs = gql `
    name:String!
    username: String!
    age:Int
-   nationality:String!
+   nationality:Nationality!
    #type is being nested here
    # And it is not nested because not all people got frnds :)
    friends: [User]
@@ -31,6 +31,27 @@ const typeDefs = gql `
 
 # The below is like that we have specified that only these many options should be there in the Data
 
+input CreateUserInput {
+    name: String!
+    username: String!
+    age: Int!
+    nationality: Nationality = BRAZIL
+  }
+
+  input UpdateUsernameInput {
+    id: ID!
+    newUsername: String!
+  }
+  input DeleteUserInput{
+    id:ID!
+  }
+
+type Mutation {
+    createUser(input: CreateUserInput!): User
+    updateUsername(input: UpdateUsernameInput!): User
+    deleteUser(id: ID!):User
+}
+
 # Its a good practice the to keep enum in CAPS ON
 enum Nationality {
     CANADA
@@ -38,9 +59,7 @@ enum Nationality {
     INDIA
     GERMANY
     CHILE
-
 }
-
 
 `;
 module.exports = { typeDefs }
