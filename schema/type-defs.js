@@ -10,7 +10,14 @@ const typeDefs = gql `
    #type is being nested here
    # And it is not nested because not all people got frnds :)
    friends: [User]
+   favMovie:[Movie]
+  }
 
+  type Movie {
+    id: ID!
+    name: String!
+    yearOfRelease:Int!
+    isInTheaters:Boolean!
   }
 
 # this type Query is the parent to write all the other query in this
@@ -18,7 +25,8 @@ const typeDefs = gql `
     # We want it to return the list of the user thats why we are using []
     users: [User!]!
     user(id: ID!): User!  
-
+    movies: [Movie!]!
+    movie(name: String!): Movie!
  }
 
 # The below is like that we have specified that only these many options should be there in the Data
